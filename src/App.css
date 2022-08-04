@@ -9,6 +9,7 @@
 
 body {
   margin: 0;
+  padding-top: 4rem;
   color: #333;
   font-family: var(--type-first);
 }
@@ -31,6 +32,11 @@ li {
 img {
   display: block;
   max-width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: #333;
 }
 
 button,
