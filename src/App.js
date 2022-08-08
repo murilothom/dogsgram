@@ -5,8 +5,10 @@ import "./App.css";
 
 import Footer from "./Components/Footer/Footer";
 import Header from "./Components/Header/Header";
+import ProtectedRoute from "./Components/Helper/ProtectedRoute";
 import Home from "./Components/Home/Home";
 import Login from "./Components/Login/Login";
+import User from "./Components/User/User";
 
 import { UserStorage } from "./Context/UserContext";
 
@@ -19,6 +21,14 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/login/*" element={<Login />} />
+            <Route
+              path="/account/*"
+              element={
+                <ProtectedRoute>
+                  <User />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <Footer />
         </UserStorage>

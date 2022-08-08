@@ -1,23 +1,31 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 import styles from "./Login.module.css";
 
 import LoginForm from "./LoginForm";
-import LoginCreate from "./LoginCreate";
+import LoginRegister from "./LoginRegister";
 import LoginForgetPassword from "./LoginForgetPassword";
 import LoginResetPassword from "./LoginResetPassword";
 
+import { UserContext } from "../../Context/UserContext";
+
 const Login = () => {
-  return (
-    <div className={styles.login}>
-      <Routes>
-        <Route path="/" element={<LoginForm />} />
-        <Route path="create" element={<LoginCreate />} />
-        <Route path="forget" element={<LoginForgetPassword />} />
-        <Route path="reset" element={<LoginResetPassword />} />
-      </Routes>
-    </div>
+  const { login } = React.useContext(UserContext);
+
+  return login ? (
+    <Navigate to="/" />
+  ) : (
+    <section className={styles.login}>
+      <div className={styles.forms}>
+        <Routes>
+          <Route path="/" element={<LoginForm />} />
+          <Route path="register" element={<LoginRegister />} />
+          <Route path="forget" element={<LoginForgetPassword />} />
+          <Route path="reset" element={<LoginResetPassword />} />
+        </Routes>
+      </div>
+    </section>
   );
 };
 
