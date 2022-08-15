@@ -9,16 +9,17 @@ import FeedPhotosItem from "./FeedPhotosItem";
 import Error from "../Helper/Error";
 import Loading from "../Helper/Loading";
 
-const FeedPhotos = ({ setModalPhoto }) => {
+const FeedPhotos = ({ user, total, page, setModalPhoto, setInfinite }) => {
   const { data, loading, error, request } = useFetch();
 
   useEffect(() => {
     async function fetchPhotos() {
-      const { url, options } = PHOTOS_GET({ page: 1, total: 6, user: 0 });
-      const { json } = await request(url, options);
+      const { url, options } = PHOTOS_GET({ page, total, user });
+      const { response, json } = await request(url, options);
+      if (response && response.ok && json.length < total) setInfinite(false);
     }
     fetchPhotos();
-  }, []);
+  }, [request, user, page, setInfinite]);
 
   if (error) return <Error error={error} />;
   if (loading) return <Loading />;

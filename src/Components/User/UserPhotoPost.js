@@ -16,6 +16,7 @@ const UserPhotoPost = () => {
   const idade = useForm("number");
   const [img, setImg] = useState({});
   const { data, error, loading, request } = useFetch();
+  const [errorImg, setErrorImg] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,6 +25,12 @@ const UserPhotoPost = () => {
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    if (!img.raw) {
+      setErrorImg("Selecione alguma imagem");
+      return;
+    }
+    if (!nome.value || peso.value <= 0 || idade <= 0) return;
     const formData = new FormData();
     formData.append("nome", nome.value);
     formData.append("peso", peso.value);
@@ -36,11 +43,11 @@ const UserPhotoPost = () => {
   }
 
   function handleImgChange(e) {
+    setErrorImg(null);
     setImg({
       preview: URL.createObjectURL(e.target.files[0]),
       raw: e.target.files[0],
     });
-    console.log(img);
   }
 
   return (
@@ -62,6 +69,9 @@ const UserPhotoPost = () => {
           <Button>Enviar</Button>
         )}
         <Error error={error} />
+        {!error && errorImg && (
+          <p style={{ color: "#f31", margin: "1rem 0" }}>{errorImg}</p>
+        )}
       </form>
       <div>
         {img.preview && (
