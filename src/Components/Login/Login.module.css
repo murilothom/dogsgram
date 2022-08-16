@@ -13,6 +13,7 @@
 }
 
 .forms {
+  margin: auto 0;
   max-width: 30rem;
   padding: 1rem;
 }

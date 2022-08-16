@@ -31,6 +31,11 @@ const UserPhotoPost = () => {
       setErrorImg("Selecione alguma imagem");
       return;
     }
+    const imgName = img.raw.name;
+    if (!imgName.endsWith("png") && !imgName.endsWith("jpg")) {
+      setErrorImg("Formato de imagem inválido!");
+      return;
+    }
     if (!nome.value || peso.value <= 0 || idade <= 0) return;
     const formData = new FormData();
     formData.append("nome", nome.value);
