@@ -10,6 +10,7 @@ import useForm from "../../Hooks/useForm";
 import Button from "../Forms/Button";
 import Input from "../Forms/Input";
 import Error from "../Helper/Error";
+import Head from "../Helper/Head";
 
 const LoginRegister = () => {
   const username = useForm();
@@ -34,6 +35,7 @@ const LoginRegister = () => {
 
   return (
     <section className="animeLeft">
+      <Head title="Cadastro" />
       <h1 className="title">Cadastre-se</h1>
       <form onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="username" {...username} />

@@ -8,6 +8,7 @@ import useForm from "../../Hooks/useForm";
 import useFetch from "../../Hooks/useFetch";
 import { PASSWORD_RESET } from "../../api";
 import Error from "../Helper/Error";
+import Head from "../Helper/Head";
 
 const LoginResetPassword = () => {
   const [login, setLogin] = useState();
@@ -40,6 +41,7 @@ const LoginResetPassword = () => {
 
   return (
     <>
+      <Head title="Redefinir Senha" />
       <h1 className="title">Redefinir Senha</h1>
       <form onSubmit={handleSubmit}>
         <Input

@@ -15,7 +15,7 @@ const UserHeader = () => {
     } else if (location.pathname === "/account/post") {
       setTitle("Adicionar Foto");
     } else {
-      setTitle("Minha Conta");
+      setTitle("Meus posts");
     }
   }, [location]);
 
