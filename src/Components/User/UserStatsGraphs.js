@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { VictoryPie, VictoryChart, VictoryBar } from "victory";
+import React, { useEffect, useState } from "react";
+import { VictoryBar, VictoryChart, VictoryPie } from "victory";
 
 import styles from "./UserStatsGraphs.module.css";
 
@@ -23,6 +23,7 @@ const UserStatsGraphs = ({ data }) => {
     );
   }, [data]);
 
+  if(!data) return null
   return (
     <section className={`${styles.graph} animeLeft`}>
       <div className={`${styles.total} ${styles.graphItem}`}>
