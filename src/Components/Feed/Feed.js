@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadNewPhotos, resetFeedState } from "../../store/feed";
 import PropTypes from 'prop-types';
@@ -9,7 +9,6 @@ import Loading from "../Helper/Loading";
 import Error from "../Helper/Error";
 
 const Feed = ({ user }) => {
-  const [modalPhoto, setModalPhoto] = useState(null);
   const { infinite, loading, list, error } = useSelector(state => state.feed)
   const dispatch = useDispatch()
 
@@ -45,11 +44,9 @@ const Feed = ({ user }) => {
 
   return (
     <div>
-      {modalPhoto && (
-        <FeedModal photo={modalPhoto} setModalPhoto={setModalPhoto} />
-      )}
+      <FeedModal />
       {loading && <Loading />}
-      {list.length > 0 && <FeedPhotos setModalPhoto={setModalPhoto} />}
+      {list.length > 0 && <FeedPhotos />}
       {error && <Error error={error} />}
       
       {!infinite && (
