@@ -9,11 +9,13 @@ import LoginRegister from "./LoginRegister";
 import LoginForgetPassword from "./LoginForgetPassword";
 import LoginResetPassword from "./LoginResetPassword";
 import NotFound from "../NotFound/NotFound";
+import Loading from "../Helper/Loading";
 
 
 const Login = () => {
-  const { data } = useSelector(state => state.user)
+  const { data, loading } = useSelector(state => state.user)
 
+  if(loading) return <Loading />
   return data ? (
     <Navigate to="/" />
   ) : (

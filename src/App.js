@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useAutoLogin } from "./Hooks/useAutoLogin";
 
 import "./App.css";
 
@@ -14,6 +15,7 @@ import UserProfile from "./Components/User/UserProfile";
 import NotFound from "./Components/NotFound/NotFound";
 
 function App() {
+  useAutoLogin()
   return (
     <div className="App">
       <BrowserRouter>
