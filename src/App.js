@@ -11,15 +11,12 @@ import Login from "./Components/Login/Login";
 import User from "./Components/User/User";
 import Photo from "./Components/Photo/Photo";
 import UserProfile from "./Components/User/UserProfile";
-
-import { UserStorage } from "./Context/UserContext";
 import NotFound from "./Components/NotFound/NotFound";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <UserStorage>
           <Header />
           <main className="AppBody">
             <Routes>
@@ -39,7 +36,6 @@ function App() {
             </Routes>
           </main>
           <Footer />
-        </UserStorage>
       </BrowserRouter>
     </div>
   );
