@@ -1,5 +1,6 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import styles from "./Login.module.css";
 
@@ -9,12 +10,11 @@ import LoginForgetPassword from "./LoginForgetPassword";
 import LoginResetPassword from "./LoginResetPassword";
 import NotFound from "../NotFound/NotFound";
 
-import { UserContext } from "../../Context/UserContext";
 
 const Login = () => {
-  const { login } = React.useContext(UserContext);
+  const { data } = useSelector(state => state.user)
 
-  return login ? (
+  return data ? (
     <Navigate to="/" />
   ) : (
     <section className={styles.login}>

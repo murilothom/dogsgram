@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { userLogin } from "../../store/user";
 
 import styles from "./LoginForm.module.css";
 import stylesBtn from "../Forms/Button.module.css";
-
-import { UserContext } from "../../Context/UserContext";
 
 import useForm from "../../Hooks/useForm";
 
@@ -14,15 +14,18 @@ import Error from "../Helper/Error";
 import Head from "../Helper/Head";
 
 const LoginForm = () => {
+  const dispatch = useDispatch()
   const username = useForm();
   const password = useForm();
+  
+  const { token, user } = useSelector(state => state)
+  const isLoading = token.loading || user.loading
+  const error = token.error || user.error
 
-  const { userLogin, error, loading } = React.useContext(UserContext);
-
-  async function handleSubmit(e) {
-    e.preventDefault();
+  async function handleSubmit(event) {
+    event.preventDefault();
     if (username.validate() && password.validate()) {
-      userLogin(username.value, password.value);
+      dispatch(userLogin({username: username.value, password: password.value}))
     }
   }
 
@@ -33,7 +36,7 @@ const LoginForm = () => {
       <form className={styles.form} onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="username" {...username} />
         <Input label="Senha" type="password" name="password" {...password} />
-        {!loading ? (
+        {!isLoading ? (
           <Button>Entrar</Button>
         ) : (
           <Button disabled>Carregando...</Button>
